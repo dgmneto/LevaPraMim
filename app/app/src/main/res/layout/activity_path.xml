@@ -8,6 +8,13 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
+    <TextView
+            android:text="@string/titulo_destino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:textSize="24dp"/>
     <Button
             android:id="@+id/finalizar"
             android:layout_width="match_parent"

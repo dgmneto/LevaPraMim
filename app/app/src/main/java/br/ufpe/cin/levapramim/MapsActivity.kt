@@ -68,11 +68,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         alertDialog.show()
 
-//        val intent = Intent(this, DisplayMessageActivity::class.java)
-//        val editText = findViewById(R.id.editText) as EditText
-//        val message = editText.text.toString()
-//        intent.putExtra(EXTRA_MESSAGE, message)
-//        startActivity(intent)
     }
 
 }

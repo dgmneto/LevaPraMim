@@ -26,20 +26,9 @@ class PathActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         var bt = findViewById(R.id.finalizar) as Button
-        bt.setOnClickListener({ finalDialog() })
+        bt.setOnClickListener({ porterDestiny() })
     }
 
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -49,20 +38,38 @@ class PathActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
-    fun finalDialog() {
-        //esse dialog vai ser aberto quando clicar no botão de finalizar corrida.
+
+    fun porterPickup() {
+        //essa função é responsável pelo que acontece quando o carregador chega na na origem
+        //ela vai renderizar o botão de iniciar a corrida ao invés do botão de "cheguei"
+    }
+
+    fun porterGoTo() {
+        //essa função é responsável pelo que acontece quando o carregador inicia a viagem
+        //ela altera o botão de "iniciar" para "finalizar e faz aparecer no mapa o caminho entre destino e origem
+    }
+
+    fun porterDestiny() {
+        //essa função é responsável pelo que acontece quando o carregador chega ao destino e finaliza a viagem.
+        //ele abre o dialog passando a informação de preço
         val valor = "15,00"
+        finalDialog(valor)
+    }
+
+    fun finalDialog(valor: String) {
+        //esse dialog vai ser aberto quando clicar no botão de finalizar corrida.
         val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setTitle("Final da corrida") // O Titulo da notificação
-        alertDialog.setMessage("O valor da corrida foi $valor?") // a mensagem ou alerta
+        alertDialog.setTitle("Final da corrida")
+        alertDialog.setMessage("O valor da corrida foi $valor?")
         //depois do dinheiro recebido, volta pra tela inicial
         alertDialog.setPositiveButton("Sim") { _, _ ->
             startActivity( Intent(this, MapsActivity::class.java) )
 
         }
         alertDialog.setNegativeButton("Não recebido") { _, _ -> Toast.makeText(this, "Deu ruim", Toast.LENGTH_LONG).show() }
-
         alertDialog.show()
     }
+
+
 
 }
