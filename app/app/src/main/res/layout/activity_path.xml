@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+    <Button
+            android:id="@+id/finalizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/finalizar_dialog"/>
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -16,9 +21,4 @@
               android:id="@+id/map"
               tools:context=".MapsActivity"
               android:name="com.google.android.gms.maps.SupportMapFragment"/>
-    <Button
-        android:id="@+id/receber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/aceitar_dialog" />
 </LinearLayout>
