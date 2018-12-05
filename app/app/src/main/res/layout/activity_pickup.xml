@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Activity do carregador no percurso-->
+<!-- Activity do carregador indo pra origem-->
+
 <LinearLayout
+
 
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -18,16 +20,16 @@
               tools:context=".MapsActivity"
               android:name="com.google.android.gms.maps.SupportMapFragment"/>
     <TextView
-            android:text="@string/path_title"
+            android:text="@string/pickup_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
             android:textStyle="bold"
             android:textSize="24dp"/>
     <Button
-            android:id="@+id/btn_path"
+            android:id="@+id/btn_pickup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finalizar"/>
+            android:text="Cheguei"/>
 
 </LinearLayout>

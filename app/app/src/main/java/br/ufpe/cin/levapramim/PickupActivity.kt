@@ -13,46 +13,31 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_path.*
 
-class PathActivity : AppCompatActivity(), OnMapReadyCallback {
+class PickupActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_path)
+        setContentView(R.layout.activity_pickup)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        var bt_path = findViewById(R.id.btn_path) as Button
-        bt_path.setOnClickListener({ porterPath() })
-    }
-
-    fun porterPath() {
-        //essa função é responsável pelo que acontece quando o carregador está no caminho.
-        //faz aoarecer no mapa o caminho que ele tem que percorrer sendo atualizado e altera o botão para "finalizar".
-        //ao clicar nesse botão, abre o dialog passando a informação de preço
-        val valor = "15,00"
-        finalDialog(valor)
+        var bt_pickup = findViewById(R.id.btn_pickup) as Button
+        bt_pickup.setOnClickListener({ porterPickup() })
 
     }
 
-    fun finalDialog(valor: String) {
-        //esse dialog vai ser aberto quando clicar no botão de finalizar corrida.
-        val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setTitle("Final da corrida")
-        alertDialog.setMessage("O valor da corrida foi $valor?")
-        //depois do dinheiro recebido, volta pra tela inicial
-        alertDialog.setPositiveButton("Sim") { _, _ ->
-            startActivity( Intent(this, MapsActivity::class.java) )
+    fun porterPickup() {
+        //essa função é responsável pelo que acontece quando o carregador está indo para a origem
+        //ela vai renderizar o botão de "cheguei" e o caminho da sua localização atual para a origem
 
-        }
-        alertDialog.setNegativeButton("Não recebido") { _, _ -> Toast.makeText(this, "Deu ruim", Toast.LENGTH_LONG).show() }
-        alertDialog.show()
+        startActivity( Intent(this, WaitingActivity::class.java) )
+//        val v = layoutInflater.inflate(R.layout.activity_waiting, null)
+
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap

@@ -30,18 +30,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var bt = findViewById(R.id.receber) as Button
         bt.setOnClickListener({ receiveDialog() })
     }
-    
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -61,7 +50,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //quando o botão de aceitar for clicado, vai redirecionar pra tela dizendo a localização a qual ele tem que se dirigir.
         alertDialog.setPositiveButton("Sim") { _, _ ->
-                startActivity( Intent(this, PathActivity::class.java) )
+                startActivity( Intent(this, PickupActivity::class.java) )
 
         }
         alertDialog.setNegativeButton("Não") { _, _ -> Toast.makeText(this, "Não", Toast.LENGTH_LONG).show() }

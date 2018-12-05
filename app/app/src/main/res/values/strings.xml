@@ -2,6 +2,8 @@
     <string name="app_name">LevaPraMim</string>
     <string name="title_activity_maps">Map</string>
     <string name="aceitar_dialog">Aceitar</string>
-    <string name="titulo_destino">Dirija-se ao destino</string>
+    <string name="pickup_title">Dirija-se a origem</string>
+    <string name="waiting_title">Iniciar a corrida</string>
+    <string name="path_title">Dirija-se ao destino</string>
     <string name="finalizar_dialog">Finalizar corrida</string>
 </resources>
