@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "83774484874",
+    "firebase_url": "https://leva-pra-mim.firebaseio.com",
+    "project_id": "leva-pra-mim",
+    "storage_bucket": "leva-pra-mim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83774484874:android:0d17fbab664516e3",
+        "android_client_info": {
+          "package_name": "br.ufpe.cin.levapramim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83774484874-1ju6b9gll536ga6lo6etqm8guge6hu87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufpe.cin.levapramim",
+            "certificate_hash": "29d0b7abf9e3e9c18fcd20546d54c8887b525089"
+          }
+        },
+        {
+          "client_id": "83774484874-oqsbjnl2app203bfmggivci10l5i1eac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB37-luh37GabEdXBudf5rVvrEgQ8nuhs0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83774484874-oqsbjnl2app203bfmggivci10l5i1eac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
