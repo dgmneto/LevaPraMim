@@ -20,5 +20,10 @@
         android:id="@+id/receber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/abrir_dialog" />
+        android:text="@string/aceitar_dialog" />
+    <Button
+            android:id="@+id/finalizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/finalizar_dialog" />
 </LinearLayout>

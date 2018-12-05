@@ -25,9 +25,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        var bt = findViewById(R.id.receber) as Button
+        var bt1 = findViewById(R.id.receber) as Button
+        bt1.setOnClickListener({ receiveDialog() })
 
-        bt.setOnClickListener({ receiveDialog() })
+        var bt2 = findViewById(R.id.finalizar) as Button
+        bt2.setOnClickListener({ finalDialog() })
     }
     
 
@@ -51,14 +53,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun receiveDialog() {
+        //esse dialog vai abrir qdo receber a solicitação do usuário. a requisição vai conter o de/para para ser printado
         val de = "lugar A"
         val para = "lugar B"
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Nova corrida") // O Titulo da notificação
         alertDialog.setMessage("deseja aceitar a corrida de $de para $para?") // a mensagem ou alerta
 
+        //quando o botão de aceitar for clicado, vai redirecionar pra tela dizendo a localização a qual ele tem que se dirigir.
         alertDialog.setPositiveButton("Sim") { _, _ -> Toast.makeText(this, "Sim", Toast.LENGTH_LONG).show() }
         alertDialog.setNegativeButton("Não") { _, _ -> Toast.makeText(this, "Não", Toast.LENGTH_LONG).show() }
+
+        alertDialog.show()
+    }
+
+    fun finalDialog() {
+        //esse dialog vai ser aberto quando clicar no botão de finalizar corrida.
+        val valor = "15,00"
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Final da corrida") // O Titulo da notificação
+        alertDialog.setMessage("O valor da corrida foi $valor?") // a mensagem ou alerta
+        //depois do dinheiro recebido, volta pra tela inicial
+        alertDialog.setPositiveButton("Recebido") { _, _ -> Toast.makeText(this, "Deu bom", Toast.LENGTH_LONG).show() }
+        alertDialog.setNegativeButton("Não recebido") { _, _ -> Toast.makeText(this, "Deu ruim", Toast.LENGTH_LONG).show() }
 
         alertDialog.show()
     }
