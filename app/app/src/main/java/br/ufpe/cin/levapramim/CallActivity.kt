@@ -11,24 +11,25 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.content.SharedPreferences
+import android.os.Looper
 import android.preference.PreferenceManager
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.View
 import android.widget.*
 
-class CallActivity : AppCompatActivity(), OnMapReadyCallback{
+class CallActivity : AppCompatActivity(), OnMapReadyCallback, AdapterView.OnItemSelectedListener {
 
     private lateinit var mMap: GoogleMap
     lateinit var prefs: SharedPreferences
-    var origens = arrayOf("o1", "o2")
-    var destinos = arrayOf("d1", "d2")
+
     var origem = ""
     var destino = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -47,14 +48,16 @@ class CallActivity : AppCompatActivity(), OnMapReadyCallback{
         sp_destiny.setAdapter(adapterOrigin)
 
 
-
         var bt_call = findViewById(R.id.btn_call) as Button
-        bt_call.setOnClickListener({ callPorter(origem, destino)})
-
+        bt_call.setOnClickListener({ callPorter(sp_pickup, sp_destiny)})
     }
 
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {  }
 
-     override fun onMapReady(googleMap: GoogleMap) {
+    override fun onNothingSelected(parent: AdapterView<*>?) { }
+
+
+    override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
@@ -64,32 +67,12 @@ class CallActivity : AppCompatActivity(), OnMapReadyCallback{
 
     }
 
-    fun callPorter(origem: String, destino: String){
-        //função qdo clica no botão de chamar, dps de preencher as infos de viagem
-        //não precisa verificar se tem informação faltando pq vai ter um valor default
-        Log.d("belezinha", origem + "  >  " + destino)
-//        if(origem == "" || destino == "") {
-//            ifDialog()
-//        } else {
-//            elseDialog()
-//        }
-
+    fun callPorter(origem: Spinner, destino: Spinner){
+        this.origem = origem.getSelectedItem().toString()
+        this.destino = destino.getSelectedItem().toString()
+        Log.d("malu caminho", this.origem + "  >  " + this.destino)
         startActivity(Intent(this, WaitingPorter::class.java))
 
     }
 
-    fun ifDialog() {
-        val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setNegativeButton("if") { _, _ -> Toast.makeText(this, "if", Toast.LENGTH_LONG).show() }
-
-        alertDialog.show()
-
-    }
-    fun elseDialog() {
-        val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setNegativeButton("else") { _, _ -> Toast.makeText(this, "else", Toast.LENGTH_LONG).show() }
-
-        alertDialog.show()
-
-    }
 }
