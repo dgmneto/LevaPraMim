@@ -35,8 +35,8 @@ class CallActivity : AppCompatActivity(), OnMapReadyCallback, AdapterView.OnItem
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         //Spinners
-        var sp_pickup = findViewById(R.id.spn_Pickup) as Spinner
-        var sp_destiny = findViewById(R.id.spn_Destiny) as Spinner
+        val sp_pickup = findViewById(R.id.spn_Pickup) as Spinner
+        val sp_destiny = findViewById(R.id.spn_Destiny) as Spinner
 
         val adapterPickup = ArrayAdapter.createFromResource(this,R.array.pickup_options, android.R.layout.simple_spinner_item)
         val adapterOrigin = ArrayAdapter.createFromResource(this, R.array.destiny_options, android.R.layout.simple_spinner_item)
@@ -48,7 +48,7 @@ class CallActivity : AppCompatActivity(), OnMapReadyCallback, AdapterView.OnItem
         sp_destiny.setAdapter(adapterOrigin)
 
 
-        var bt_call = findViewById(R.id.btn_call) as Button
+        val bt_call = findViewById(R.id.btn_call) as Button
         bt_call.setOnClickListener({ callPorter(sp_pickup, sp_destiny)})
     }
 
@@ -70,9 +70,8 @@ class CallActivity : AppCompatActivity(), OnMapReadyCallback, AdapterView.OnItem
     fun callPorter(origem: Spinner, destino: Spinner){
         this.origem = origem.getSelectedItem().toString()
         this.destino = destino.getSelectedItem().toString()
-        Log.d("malu caminho", this.origem + "  >  " + this.destino)
         startActivity(Intent(this, WaitingPorter::class.java))
-
+        //envia origem e destino pro firebase pra mostrar pros carregadores
     }
 
 }
