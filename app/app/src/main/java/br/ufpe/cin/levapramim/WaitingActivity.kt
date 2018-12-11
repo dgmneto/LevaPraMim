@@ -14,7 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class WaitingActivity : AppCompatActivity(), OnMapReadyCallback {
+class WaitingActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 

@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_path.*
 
-class PathActivity : AppCompatActivity(), OnMapReadyCallback {
+class PathActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
