@@ -1,4 +1,4 @@
-package br.ufpe.cin.levapramim.presentation.ui.activities
+package br.ufpe.cin.levapramim.presentation.ui.activities.base
 
 import android.app.Activity
 import android.content.Intent

@@ -1,9 +1,10 @@
-package br.ufpe.cin.levapramim.presentation.ui.activities
+package br.ufpe.cin.levapramim.presentation.ui.activities.base
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
@@ -27,10 +28,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-class MapsActivity : AbstractLoggedActivity(), OnMapReadyCallback {
+abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallback {
     private val RC_FINE_LOCATION_PERMISSION = 0
     private val LOCATION_UPDATE_INTERVAL_MIN = 1L
-    private val THREAD_EXECUTOR = Executors.newSingleThreadExecutor()
     private var mFusedLocationProviderClient : FusedLocationProviderClient? = null
     private var mLocationCallback : LocationCallback = InnerLocationCallback()
     private var mMap : GoogleMap? = null
@@ -75,10 +75,15 @@ class MapsActivity : AbstractLoggedActivity(), OnMapReadyCallback {
             super.onLocationResult(locationResult)
             if (locationResult == null) return
             val lastLocation = locationResult.lastLocation
+            this@AbstractMapsActivity.onLocation(lastLocation)
             val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
             updateMarker(latLng)
             updateCamera(latLng)
         }
+    }
+
+    open fun onLocation(location: Location) {
+        // UNIMPLEMENTED
     }
 
     fun updateMarker(latLng: LatLng) {

@@ -1,4 +1,6 @@
 package br.ufpe.cin.levapramim.domain.models
 
-class Market(val id : Long, val name : String, val boundingBox: BoundingBox) {
+import br.ufpe.cin.levapramim.domain.models.market.BoundingBox
+
+class Market(val id : String, val name : String, val boundingBox: BoundingBox) {
 }

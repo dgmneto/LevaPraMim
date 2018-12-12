@@ -1,10 +1,9 @@
 package br.ufpe.cin.levapramim.domain.interactors.impl
 
 import br.ufpe.cin.levapramim.domain.executors.MainThread
-import br.ufpe.cin.levapramim.domain.interactors.GetClosestMarketInteractor
 import br.ufpe.cin.levapramim.domain.interactors.GetClosestMarketInteractor.Callback
 import br.ufpe.cin.levapramim.domain.interactors.base.AbstractInteractor
-import br.ufpe.cin.levapramim.domain.models.BoundingBox
+import br.ufpe.cin.levapramim.domain.models.market.BoundingBox
 import br.ufpe.cin.levapramim.domain.models.Coordinates
 import br.ufpe.cin.levapramim.domain.models.Market
 import java.util.concurrent.Executor
