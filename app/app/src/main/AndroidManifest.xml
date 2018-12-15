@@ -45,7 +45,14 @@
                 android:screenOrientation="portrait"
                 android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
-
+        <activity
+                android:name=".presentation.ui.activities.base.BaseActivity"
+                android:label="@string/title_activity_maps">
+        </activity>
+        <activity
+                android:name=".presentation.ui.activities.base.HistoryActivity"
+                android:label="@string/title_activity_history">
+        </activity>
         <uses-library
                 android:name="org.apache.http.legacy"
                 android:required="false"/>

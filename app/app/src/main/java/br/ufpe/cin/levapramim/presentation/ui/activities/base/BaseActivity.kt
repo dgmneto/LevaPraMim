@@ -19,7 +19,7 @@ open class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.action_old_trips -> {
-                startActivity(Intent(applicationContext, OldTripActivity::class.java))
+                startActivity(Intent(applicationContext, HistoryActivity::class.java))
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

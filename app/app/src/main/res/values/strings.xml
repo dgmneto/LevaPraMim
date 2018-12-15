@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">LevaPraMim</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_history">History</string>
     <string name="pickup_label">Origem</string>
     <string-array name="pickup_options">
         <item>O1</item>
