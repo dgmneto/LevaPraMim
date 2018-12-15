@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import java.util.concurrent.Executors
 
-abstract class AbstractLoggedActivity : AppCompatActivity(), LoggedPresenter.View {
+abstract class AbstractLoggedActivity : BaseActivity(), LoggedPresenter.View {
     private val RC_SIG_IN = 0
 
     private val executor = Executors.newFixedThreadPool(2)
