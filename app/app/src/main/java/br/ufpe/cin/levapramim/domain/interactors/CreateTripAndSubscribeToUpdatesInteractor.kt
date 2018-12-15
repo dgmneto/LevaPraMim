@@ -1,12 +1,11 @@
 package br.ufpe.cin.levapramim.domain.interactors
 
 import br.ufpe.cin.levapramim.domain.interactors.base.Interactor
-import br.ufpe.cin.levapramim.domain.models.Market
+import br.ufpe.cin.levapramim.domain.models.Trip
 
-interface GetClosestMarketInteractor : Interactor {
+interface CreateTripAndSubscribeToUpdatesInteractor : Interactor {
     interface Callback {
-        fun onSuccess(market: Market)
+        fun onTrip(trip: Trip)
         fun onError(throwable: Throwable)
     }
-
 }

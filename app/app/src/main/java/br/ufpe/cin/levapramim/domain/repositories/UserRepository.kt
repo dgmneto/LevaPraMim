@@ -6,6 +6,8 @@ import br.ufpe.cin.levapramim.domain.models.user.UserType
 interface UserRepository {
     interface Callback {
         fun onUser(id : String, type: UserType?, user: User?)
+
+        fun onError(throwable: Throwable)
     }
     fun getLoggedUser(callback: Callback)
 }

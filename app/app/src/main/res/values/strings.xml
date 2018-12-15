@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">LevaPraMim</string>
     <string name="title_activity_maps">Map</string>
+    <string name="pickup_label">Origem</string>
+    <string-array name="pickup_options">
+        <item>O1</item>
+        <item>O2</item>
+    </string-array>
+    <string name="destiny_label">Destino</string>
+    <string name="t">Procurando carregador</string>
+    <string name="arrived">O carregador já está na loja</string>
+    <string name="origemText">Origem:</string>
+    <string name="destinoText">Destino:</string>
+    <string name="chamar_carregadorText">Chamar carregador</string>
+    <string name="cancelar">cancelar</string>
+    <string name="carregador_chegou">carregador chegou</string>
+    <string name="status">status</string>
+    <string-array name="destiny_options">
+        <item>D1</item>
+        <item>D2</item>
+    </string-array>
+
+    <string name="title_activity_spawn">SpawnActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="loading_txt">Carregando...</string>
 </resources>

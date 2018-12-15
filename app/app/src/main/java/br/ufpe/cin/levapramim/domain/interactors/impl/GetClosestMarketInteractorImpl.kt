@@ -24,7 +24,7 @@ class GetClosestMarketInteractorImpl(mExecutor : Executor, mMainThread : MainThr
         val upperLeft = Coordinates(-8.044960, -34.955703)
         val lowerRight = Coordinates(-8.060091, -34.945648)
         val boundingBox = BoundingBox(upperLeft, lowerRight)
-        val market = Market(0, "Feira UFPE", boundingBox)
+        val market = Market("0", "Feira UFPE", boundingBox)
         return market
     }
 }

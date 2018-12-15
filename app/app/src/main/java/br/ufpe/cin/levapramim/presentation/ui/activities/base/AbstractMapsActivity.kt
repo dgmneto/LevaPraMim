@@ -35,15 +35,16 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     private var mLocationCallback : LocationCallback = InnerLocationCallback()
     private var mMap : GoogleMap? = null
     private var mMarker : Marker? = null
-    // TODO add market
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        setContentView(getLayoutResourceId())
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
+
+    abstract fun getLayoutResourceId() : Int
 
     override fun onResume() {
         super.onResume()

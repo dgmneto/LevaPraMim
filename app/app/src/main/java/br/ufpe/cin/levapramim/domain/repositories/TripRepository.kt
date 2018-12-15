@@ -2,20 +2,19 @@ package br.ufpe.cin.levapramim.domain.repositories
 
 import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
-import java.io.Closeable
 
 interface TripRepository {
-    interface TripsCallback {
+    interface Callback {
         fun onTrip(id : String, trip : Trip?)
 
         fun onError(t : Throwable)
     }
 
-    fun findTripsByMarketIdAndStatus(marketId : String, status : Status, callback: TripsCallback)
+    fun findTripsByMarketIdAndStatus(marketId : String, status : Status, callback: Callback)
 
-    fun updateTripStatus(tripId : String, from : Status, to : Status, callback: TripsCallback)
+    fun updateTripStatus(tripId : String, from : Status, to : Status, callback: Callback)
 
-    fun createTripAndSubscribeToUpdates(trip : Trip, callback: TripsCallback)
+    fun createTripAndSubscribeToUpdates(trip : Trip, callback: Callback)
 
-    fun subscribeToUpdates(trip : Trip, callback: TripsCallback)
+    fun subscribeToUpdates(trip : Trip, callback: Callback)
 }

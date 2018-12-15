@@ -26,7 +26,8 @@ class FirebaseUserRepository(
                     UserType.CARRIER.toString() -> Pair(UserType.CARRIER, it.toObject(Carrier::class.java))
                     else -> throw RuntimeException("Invalid user type")
                 }
-                callback.onUser(user!!.id, userType, user)
+                callback.onUser(user?.id!!, userType, user)
             }
+            .addOnFailureListener(callback::onError)
     }
 }
