@@ -24,4 +24,9 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="loading_txt">Carregando...</string>
+    <string name="aceitar_dialog">Aceitar</string>
+    <string name="pickup_title">Dirija-se a origem</string>
+    <string name="waiting_title">Iniciar a corrida</string>
+    <string name="path_title">Dirija-se ao destino</string>
+    <string name="finalizar_dialog">Finalizar corrida</string>
 </resources>

@@ -73,10 +73,10 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
     ) {
         val db = firebaseFirestore.collection(COLLECTION_NAME)
         val docRef = db.document()
-        val trip = trip.copy(id = docRef.id)
-        docRef.set(trip)
+        val tripWithId = trip.copy(id = docRef.id)
+        docRef.set(tripWithId)
             .addOnSuccessListener {
-                callback.onTrip(trip.id!!, trip)
+                callback.onTrip(tripWithId.id!!, tripWithId)
                 subscribeToUpdates(docRef, callback)
             }
             .addOnFailureListener(callback::onError)
@@ -96,8 +96,8 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
                 return@EventListener
             }
 
-            val trip = docSnapshot!!.toObject(Trip::class.java)
-            callback.onTrip(trip?.id!!, trip)
+            val snapshotTrip = docSnapshot!!.toObject(Trip::class.java)
+            callback.onTrip(snapshotTrip?.id!!, snapshotTrip)
         }
         trip.addSnapshotListener(onEventListener)
     }

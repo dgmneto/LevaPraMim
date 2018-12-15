@@ -3,6 +3,7 @@ package br.ufpe.cin.levapramim.presentation.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import br.ufpe.cin.levapramim.presentation.ui.activities.carrier.MapsActivity
 import br.ufpe.cin.levapramim.R
 import br.ufpe.cin.levapramim.domain.models.User
 import br.ufpe.cin.levapramim.domain.models.user.UserType
@@ -14,7 +15,7 @@ class SpawnActivity : AbstractLoggedActivity() {
         super.onUser(type, user)
         val intent = when (type) {
             UserType.CLIENT -> Intent(this, ClientMainActivity::class.java)
-            UserType.CARRIER -> Intent(this, CarrierMainActivity::class.java)
+            UserType.CARRIER -> Intent(this, MapsActivity::class.java)
         }
         startActivity(intent)
         this.finish()

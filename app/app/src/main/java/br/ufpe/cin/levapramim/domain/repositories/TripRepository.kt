@@ -7,7 +7,7 @@ interface TripRepository {
     interface Callback {
         fun onTrip(id : String, trip : Trip?)
 
-        fun onError(t : Throwable)
+        fun onError(throwable : Throwable)
     }
 
     fun findTripsByMarketIdAndStatus(marketId : String, status : Status, callback: Callback)
