@@ -1,5 +1,6 @@
 package br.ufpe.cin.levapramim.presentation.ui.activities.client
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -15,6 +16,7 @@ import br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMarketActi
 import br.ufpe.cin.levapramim.threading.MainThreadImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.lang.RuntimeException
 import java.util.concurrent.Executors
 
 
@@ -26,6 +28,7 @@ class ClientTripActivity : AbstractMarketActivity(), ClientTripPresenter.View {
         val PICKED_TRIP_MESSAGE = "O carregador está a caminho"
         val ARRIVED_TRIP_MESSAGE = "O carregador chegou"
         val STARTED_TRIP_MESSAGE = "A corrida está acontecendo"
+        val DONE_TRIP_MESSAGE = "A corrida terminou"
     }
 
     private lateinit var presenter : ClientTripPresenter
@@ -64,7 +67,14 @@ class ClientTripActivity : AbstractMarketActivity(), ClientTripPresenter.View {
             Status.PICKED  -> PICKED_TRIP_MESSAGE
             Status.ARRIVED -> ARRIVED_TRIP_MESSAGE
             Status.STARTED -> STARTED_TRIP_MESSAGE
-            else           -> throw RuntimeException("Impossible")
+            Status.DONE    -> {
+                val intent = Intent(this, ClientMainActivity::class.java)
+                intent.putExtra(AbstractMarketActivity.MARKET_EXTRA_KEY, getMarket())
+                startActivity(intent)
+                finish()
+                DONE_TRIP_MESSAGE
+            }
+            else           -> throw RuntimeException("Unreachable")
         }
     }
 
