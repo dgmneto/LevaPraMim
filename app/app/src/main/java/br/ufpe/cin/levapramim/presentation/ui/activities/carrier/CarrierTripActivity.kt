@@ -120,7 +120,7 @@ class CarrierTripActivity : AbstractMarketActivity(), View.OnClickListener, Carr
 
     private fun onTripDone() {
         val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setTitle("Final da corrida")
+        alertDialog.setTitle("A corrida acabou")
         alertDialog.setMessage("O valor da corrida foi R$ $DEFAULT_TRIP_PRICE?")
         alertDialog.setPositiveButton("Finalizar") { _, _ ->
             val intent = Intent(this, CarrierMainActivity::class.java)
