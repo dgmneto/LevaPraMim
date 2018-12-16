@@ -5,6 +5,7 @@ import br.ufpe.cin.levapramim.domain.repositories.PlaceRepository
 import br.ufpe.cin.levapramim.domain.repositories.PlaceRepository.Callback
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import java.util.concurrent.ConcurrentLinkedQueue
 
 class FirebasePlaceRepository(val firebaseFirestore: FirebaseFirestore) : PlaceRepository {
     companion object {
@@ -23,5 +24,22 @@ class FirebasePlaceRepository(val firebaseFirestore: FirebaseFirestore) : PlaceR
                 callback.onPlaces(places)
             }
             .addOnFailureListener(callback::onError)
+    }
+
+    override fun findPlacesByIds(ids: List<String>, callback: Callback) {
+        val db = firebaseFirestore.collection(COLLECTION_NAME)
+        val places = ConcurrentLinkedQueue<Place>()
+        ids.forEach{
+            db.document(it)
+                .get()
+                .addOnSuccessListener {documentSnapshot ->
+                    val place = documentSnapshot.toObject(Place::class.java)
+                    places.add(place)
+                    if (places.size == ids.size) {
+                        callback.onPlaces(places.asSequence().toList())
+                    }
+                }
+                .addOnFailureListener(callback::onError)
+        }
     }
 }

@@ -29,4 +29,5 @@
     <string name="waiting_title">Iniciar a corrida</string>
     <string name="path_title">Dirija-se ao destino</string>
     <string name="finalizar_dialog">Finalizar corrida</string>
+    <string name="updating_trips">Atualizando corridas...</string>
 </resources>

@@ -27,7 +27,6 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
                 snapshot.documentChanges.forEach {documentChange ->
                     val document = documentChange.document
                     val id = document.id
-                    document.toObject(Trip::class.java)
                     val trip = when (documentChange.type) {
                         DocumentChange.Type.ADDED, DocumentChange.Type.MODIFIED ->
                             document.toObject(Trip::class.java)
@@ -38,7 +37,7 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
             }
         }
 
-        db.whereEqualTo("market_id", marketId)
+        db.whereEqualTo("marketId", marketId)
             .whereEqualTo("status", status.toString())
             .addSnapshotListener(activity, onEventListener)
     }

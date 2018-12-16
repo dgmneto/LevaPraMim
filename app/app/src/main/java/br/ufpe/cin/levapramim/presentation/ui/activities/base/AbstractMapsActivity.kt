@@ -78,7 +78,7 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
             val lastLocation = locationResult.lastLocation
             this@AbstractMapsActivity.onLocation(lastLocation)
             val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-            updateMarker(latLng)
+            if (shouldShowMarker()) updateMarker(latLng)
             updateCamera(latLng)
         }
     }
@@ -135,4 +135,8 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
         super.onStop()
         mFusedLocationProviderClient?.removeLocationUpdates(mLocationCallback)
     }
+
+    protected fun getMap() = mMap
+
+    open fun shouldShowMarker() = true
 }
