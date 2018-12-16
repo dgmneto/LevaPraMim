@@ -11,6 +11,7 @@ import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.impl.FirebasePlaceRepository
 import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseTripRepository
+import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseUserRepository
 import br.ufpe.cin.levapramim.presentation.presenters.CarrierMainPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.impl.CarrierMainPresenterImpl
 import br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMarketActivity
@@ -20,6 +21,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import java.util.concurrent.Executors
@@ -37,11 +39,13 @@ class CarrierMainActivity : AbstractMarketActivity(), GoogleMap.OnMarkerClickLis
         super.onCreate(savedInstanceState)
         val tripRepository = FirebaseTripRepository(FirebaseFirestore.getInstance(), this)
         val placeRepository = FirebasePlaceRepository(FirebaseFirestore.getInstance())
+        val userRepository = FirebaseUserRepository(FirebaseAuth.getInstance(), FirebaseFirestore.getInstance())
         presenter = CarrierMainPresenterImpl(
             MainThreadImpl.getInstance(),
             Executors.newFixedThreadPool(2),
             tripRepository,
             placeRepository,
+            userRepository,
             this)
     }
 

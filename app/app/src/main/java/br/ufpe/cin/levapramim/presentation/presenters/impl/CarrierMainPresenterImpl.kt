@@ -11,6 +11,7 @@ import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.PlaceRepository
 import br.ufpe.cin.levapramim.domain.repositories.TripRepository
+import br.ufpe.cin.levapramim.domain.repositories.UserRepository
 import br.ufpe.cin.levapramim.presentation.presenters.CarrierMainPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.base.AbstractPresenter
 import java.util.concurrent.Executor
@@ -20,6 +21,7 @@ class CarrierMainPresenterImpl(
     mMainThread: Executor,
     val tripRepository: TripRepository,
     val placeRepository: PlaceRepository,
+    val userRepository: UserRepository,
     val view: CarrierMainPresenter.View
 ) : AbstractPresenter(mExecutor, mMainThread),  CarrierMainPresenter, WatchTripsInMarketInteractor.Callback, UpdateTripStatusInteractor.Callback {
     override fun resume(market: Market) {
@@ -38,6 +40,7 @@ class CarrierMainPresenterImpl(
             mExecutor,
             mMainThread,
             tripRepository,
+            userRepository,
             trip,
             Status.PICKED,
             this)

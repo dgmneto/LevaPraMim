@@ -6,6 +6,7 @@ import br.ufpe.cin.levapramim.domain.interactors.impl.UpdateTripStatusInteractor
 import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseTripRepository
+import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseUserRepository
 import br.ufpe.cin.levapramim.presentation.presenters.CarrierTripPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.base.AbstractPresenter
 import java.util.concurrent.Executor
@@ -14,6 +15,7 @@ class CarrierTripPresenterImpl(
     mExecutor: Executor,
     mMainThread: MainThread,
     val tripRepository: FirebaseTripRepository,
+    val userRepository: FirebaseUserRepository,
     val view : CarrierTripPresenter.View
 ): AbstractPresenter(mMainThread, mExecutor), CarrierTripPresenter, UpdateTripStatusInteractor.Callback {
     override fun updatedStatus(trip: Trip, newStatus: Status) {
@@ -21,6 +23,7 @@ class CarrierTripPresenterImpl(
             mExecutor,
             mMainThread,
             tripRepository,
+            userRepository,
             trip,
             newStatus,
             this)

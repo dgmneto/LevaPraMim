@@ -42,24 +42,22 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
             .addSnapshotListener(activity, onEventListener)
     }
 
-    override fun updateTripStatus(
-        tripId: String,
-        from: Status,
-        to: Status,
+    override fun updateTrip(
+        trip: Trip,
+        updatedTrip: Trip,
         callback: TripRepository.Callback) {
-        val docRef = firebaseFirestore.collection(COLLECTION_NAME).document(tripId.toString())
+        val docRef = firebaseFirestore.collection(COLLECTION_NAME).document(trip.id!!)
         firebaseFirestore
             .runTransaction { transaction ->
-                val fromTrip = transaction.get(docRef).toObject(Trip::class.java)
-                if (fromTrip != null && fromTrip.status!!.equals(from)) {
-                    val toTrip = fromTrip.copy(status = to)
-                    transaction.set(docRef, toTrip)
-                    return@runTransaction toTrip
+                val dbTrip = transaction.get(docRef).toObject(Trip::class.java)
+                if (dbTrip != null && dbTrip.equals(trip)) {
+                    transaction.set(docRef, updatedTrip)
+                    return@runTransaction updatedTrip
                 }
                 throw RuntimeException("Couldn't update trip status")
             }
-            .addOnSuccessListener { trip : Trip ->
-                callback.onTrip(trip.id!!, trip)
+            .addOnSuccessListener { dbTrip : Trip ->
+                callback.onTrip(dbTrip.id!!, dbTrip)
             }
             .addOnFailureListener { throwable ->
                 callback.onError(throwable)

@@ -12,6 +12,7 @@ import br.ufpe.cin.levapramim.domain.models.Place
 import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseTripRepository
+import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseUserRepository
 import br.ufpe.cin.levapramim.presentation.presenters.CarrierTripPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.ClientTripPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.impl.CarrierMainPresenterImpl
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.Executors
 
@@ -60,10 +62,12 @@ class CarrierTripActivity : AbstractMarketActivity(), View.OnClickListener, Carr
         destiny = intent.extras!![DESTINY_EXTRA_KEY] as Place
 
         val tripRepository = FirebaseTripRepository(FirebaseFirestore.getInstance(), this)
+        val userRepository = FirebaseUserRepository(FirebaseAuth.getInstance(), FirebaseFirestore.getInstance())
         presenter = CarrierTripPresenterImpl(
             Executors.newFixedThreadPool(2),
             MainThreadImpl.getInstance(),
             tripRepository,
+            userRepository,
             this)
     }
 
@@ -121,7 +125,7 @@ class CarrierTripActivity : AbstractMarketActivity(), View.OnClickListener, Carr
     private fun onTripDone() {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("A corrida acabou")
-        alertDialog.setMessage("O valor da corrida foi R$ $DEFAULT_TRIP_PRICE?")
+        alertDialog.setMessage("O valor da corrida foi R$ $DEFAULT_TRIP_PRICE.")
         alertDialog.setPositiveButton("Finalizar") { _, _ ->
             val intent = Intent(this, CarrierMainActivity::class.java)
             intent.putExtra(AbstractMarketActivity.MARKET_EXTRA_KEY, getMarket())

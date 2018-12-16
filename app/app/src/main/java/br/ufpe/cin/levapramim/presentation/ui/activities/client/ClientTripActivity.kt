@@ -19,6 +19,7 @@ import br.ufpe.cin.levapramim.presentation.ui.activities.carrier.CarrierTripActi
 import br.ufpe.cin.levapramim.threading.MainThreadImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.lang.RuntimeException
 import java.util.concurrent.Executors
 
 
@@ -75,10 +76,10 @@ class ClientTripActivity : AbstractMarketActivity(), ClientTripPresenter.View {
         }
     }
 
-    private fun onTripDone(trip: Trip) {
+    private fun onTripDone(trips: Trip) {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("A corrida acabou")
-        alertDialog.setMessage("O valor da corrida foi R$ ${CarrierTripActivity.DEFAULT_TRIP_PRICE}?")
+        alertDialog.setMessage("O valor da corrida foi R$ ${CarrierTripActivity.DEFAULT_TRIP_PRICE}.")
         alertDialog.setPositiveButton("Finalizar") { _, _ ->
             val intent = Intent(this, ClientMainActivity::class.java)
             intent.putExtra(AbstractMarketActivity.MARKET_EXTRA_KEY, getMarket())
