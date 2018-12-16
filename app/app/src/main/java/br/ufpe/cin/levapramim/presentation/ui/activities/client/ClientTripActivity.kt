@@ -2,6 +2,7 @@ package br.ufpe.cin.levapramim.presentation.ui.activities.client
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.widget.TextView
 import br.ufpe.cin.levapramim.R
@@ -13,6 +14,8 @@ import br.ufpe.cin.levapramim.domain.repositories.impl.FirebaseUserRepository
 import br.ufpe.cin.levapramim.presentation.presenters.ClientTripPresenter
 import br.ufpe.cin.levapramim.presentation.presenters.impl.ClientTripPresenterImpl
 import br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMarketActivity
+import br.ufpe.cin.levapramim.presentation.ui.activities.carrier.CarrierMainActivity
+import br.ufpe.cin.levapramim.presentation.ui.activities.carrier.CarrierTripActivity
 import br.ufpe.cin.levapramim.threading.MainThreadImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,13 +25,12 @@ import java.util.concurrent.Executors
 
 class ClientTripActivity : AbstractMarketActivity(), ClientTripPresenter.View {
     companion object {
-        val ORIGIN_EXTRA_KEY = "ORIGIN_PLACE"
-        val DESTINY_EXTRA_KEY = "DESTINY_PLACE"
-        val PENDING_TRIP_MESSAGE = "Aguardando carregador"
-        val PICKED_TRIP_MESSAGE = "O carregador está a caminho"
-        val ARRIVED_TRIP_MESSAGE = "O carregador chegou"
-        val STARTED_TRIP_MESSAGE = "A corrida está acontecendo"
-        val DONE_TRIP_MESSAGE = "A corrida terminou"
+        const val ORIGIN_EXTRA_KEY = "ORIGIN_PLACE"
+        const val DESTINY_EXTRA_KEY = "DESTINY_PLACE"
+        const val PENDING_TRIP_MESSAGE = "Aguardando carregador"
+        const val PICKED_TRIP_MESSAGE = "O carregador está a caminho"
+        const val ARRIVED_TRIP_MESSAGE = "O carregador chegou"
+        const val STARTED_TRIP_MESSAGE = "A corrida está acontecendo"
     }
 
     private lateinit var presenter : ClientTripPresenter
@@ -62,20 +64,28 @@ class ClientTripActivity : AbstractMarketActivity(), ClientTripPresenter.View {
     }
 
     override fun onTrip(trip: Trip) {
-        this.textViewToChange.text = when (trip.status) {
+        this.textViewToChange.text = when (trip.status!!) {
             Status.PENDING -> PENDING_TRIP_MESSAGE
             Status.PICKED  -> PICKED_TRIP_MESSAGE
             Status.ARRIVED -> ARRIVED_TRIP_MESSAGE
             Status.STARTED -> STARTED_TRIP_MESSAGE
             Status.DONE    -> {
-                val intent = Intent(this, ClientMainActivity::class.java)
-                intent.putExtra(AbstractMarketActivity.MARKET_EXTRA_KEY, getMarket())
-                startActivity(intent)
-                finish()
-                DONE_TRIP_MESSAGE
+                onTripDone(trip)
+                return
             }
-            else           -> throw RuntimeException("Unreachable")
         }
+    }
+
+    private fun onTripDone(trips: Trip) {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("A corrida acabou")
+        alertDialog.setMessage("O valor da corrida foi R$ ${CarrierTripActivity.DEFAULT_TRIP_PRICE}.")
+        alertDialog.setPositiveButton("Finalizar") { _, _ ->
+            val intent = Intent(this, ClientMainActivity::class.java)
+            intent.putExtra(AbstractMarketActivity.MARKET_EXTRA_KEY, getMarket())
+            startActivity(intent)
+        }
+        alertDialog.show()
     }
 
     override fun showError(messageString: String) {

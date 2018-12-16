@@ -10,4 +10,6 @@ interface PlaceRepository {
     }
 
     fun findPlacesByMarketId(marketId : String, callback: Callback)
+
+    fun findPlacesByIds(ids: List<String>, callback: Callback)
 }

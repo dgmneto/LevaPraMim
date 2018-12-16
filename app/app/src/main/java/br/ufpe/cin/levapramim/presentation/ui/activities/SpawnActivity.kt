@@ -3,6 +3,7 @@ package br.ufpe.cin.levapramim.presentation.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import br.ufpe.cin.levapramim.presentation.ui.activities.carrier.CarrierMainActivity
 import br.ufpe.cin.levapramim.R
 import br.ufpe.cin.levapramim.domain.models.User
 import br.ufpe.cin.levapramim.domain.models.user.UserType

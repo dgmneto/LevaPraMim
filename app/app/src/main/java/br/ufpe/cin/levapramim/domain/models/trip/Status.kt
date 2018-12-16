@@ -1,6 +1,8 @@
 package br.ufpe.cin.levapramim.domain.models.trip
 
-enum class Status {
+import java.io.Serializable
+
+enum class Status : Serializable {
     PENDING,
     PICKED,
     ARRIVED,

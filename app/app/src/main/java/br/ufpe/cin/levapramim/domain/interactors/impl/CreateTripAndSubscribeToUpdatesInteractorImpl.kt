@@ -43,8 +43,8 @@ class CreateTripAndSubscribeToUpdatesInteractorImpl(
         callback.onTrip(trip!!)
     }
 
-    override fun onError(t: Throwable) {
-        callback.onError(t)
+    override fun onError(throwable: Throwable) {
+        callback.onError(throwable)
     }
 
     override fun run() {
