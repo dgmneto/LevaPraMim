@@ -4,8 +4,11 @@ import android.app.Activity
 import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.TripRepository
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.*
+import com.google.firebase.firestore.EventListener
 import java.lang.RuntimeException
+import java.util.*
 
 class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val activity : Activity) : TripRepository {
     companion object {
@@ -42,6 +45,24 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
             .whereEqualTo("status", status.toString())
             .addSnapshotListener(activity, onEventListener)
     }
+
+    override fun findTripsByUserId(userId : String, callback: TripRepository.Callback){
+        val db = firebaseFirestore.collection(COLLECTION_NAME)
+        val client  = db.whereEqualTo("clientId", userId).get()
+        val carrier = db.whereEqualTo("carrierId", userId).get()
+        val mergedTasks = Tasks.whenAll(client, carrier)
+        mergedTasks.addOnFailureListener(callback::onError)
+        mergedTasks.addOnSuccessListener {
+            val clientResult = client.result
+            val carrierResult = carrier.result
+            val result = LinkedList<Trip>()
+            getTripsInSnapshot(clientResult).forEach {trip -> result.add(trip)}
+            getTripsInSnapshot(carrierResult).forEach {trip -> result.add(trip)}
+            result.forEach{trip -> callback.onTrip(trip.id!!, trip)}
+            callback.onTrips(result)
+        }
+    }
+
 
     override fun updateTripStatus(
         tripId: String,
@@ -100,5 +121,15 @@ class FirebaseTripRepository (val firebaseFirestore : FirebaseFirestore, val act
             callback.onTrip(trip?.id!!, trip)
         }
         trip.addSnapshotListener(onEventListener)
+    }
+
+    private fun getTripsInSnapshot(querySnapshot: QuerySnapshot?) : Iterable<Trip> {
+        if (querySnapshot == null) {
+            return Collections.emptyList()
+        }
+
+        return querySnapshot.documents.map { it.toObject(Trip::class.java) }
+            .filter { it != null }
+            .map { it!! }
     }
 }
