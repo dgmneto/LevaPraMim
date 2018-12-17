@@ -9,6 +9,10 @@ Encontrar um carregador é um golpe de sorte hoje em dia, pois não estão centr
 O Leva Pra Mim é um aplicativo que permite a centralização dos carregadores para facilitar o encontro com clientes. Nele, ao fazer login, o cliente pode escolher um ponto de referência da lista pré-determinada dos locais mais comuns para tal, bem como dizer também para onde deseja ir.
 Já para o carregador, ele poderá ver todas as solicitaçoes de viagens ao mesmo tempo e escolher qual deseja realizar.
 
+## Credenciais
+
+ - Cliente: Usuário: dgmneto@gmail.com / Senha: 123456
+ - Carregador: Usuário: dgmn@cin.ufpe.br / Senha: 123456
 
 ## Fluxo
 Para o cliente o fluxo é:
