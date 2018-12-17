@@ -86,7 +86,6 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
             val lastLocation = locationResult.lastLocation
             activity.onLocation(lastLocation)
             val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-            if (activity.shouldShowMarker()) activity.updateMarker(latLng)
             activity.updateCamera(latLng)
         }
     }
@@ -95,29 +94,14 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
         // UNIMPLEMENTED
     }
 
-    fun updateMarker(latLng: LatLng) {
-        if (mMarker == null)
-            mMarker = mMap!!.addMarker(MarkerOptions().position(latLng).title("You're here"))
-        else
-            mMarker!!.position = latLng
-    }
-
     fun updateCamera(latLng: LatLng) {
         val cameraPosition = CameraPosition.fromLatLngZoom(latLng, 15.0f)
         mMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.isMyLocationEnabled = true
         mMap = googleMap
     }
 
@@ -145,6 +129,4 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     }
 
     protected fun getMap() = mMap
-
-    open fun shouldShowMarker() = true
 }
