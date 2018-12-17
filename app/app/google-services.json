@@ -23,13 +23,21 @@
           }
         },
         {
+          "client_id": "83774484874-1kupbgm6g9cqj7omqvdbfekosrqeaql4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufpe.cin.levapramim",
+            "certificate_hash": "62aa3da36da1c0cdcbf1ef733a424380f76a2976"
+          }
+        },
+        {
           "client_id": "83774484874-oqsbjnl2app203bfmggivci10l5i1eac.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB37-luh37GabEdXBudf5rVvrEgQ8nuhs0"
+          "current_key": "AIzaSyBQWJklBb42Bz7RKSKtadbKGa83DovLc-0"
         }
       ],
       "services": {

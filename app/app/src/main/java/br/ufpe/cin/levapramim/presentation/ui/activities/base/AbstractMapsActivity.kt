@@ -46,25 +46,17 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
 
     abstract fun getLayoutResourceId() : Int
 
-    override fun onResume() {
-        super.onResume()
-        if (currentUser != null) {
-            startCurrentLocationUpdates()
-        }
-    }
-
     @SuppressLint("MissingPermission")
-    fun startCurrentLocationUpdates() {
-        if (isGooglePlayServicesAvailable()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                !werePermissionsGranted()) {
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(ACCESS_FINE_LOCATION),
-                    RC_FINE_LOCATION_PERMISSION)
-            } else {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == RC_FINE_LOCATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
+                this.mMap!!.isMyLocationEnabled = true
                 mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
                 mFusedLocationProviderClient!!.lastLocation
                     .addOnSuccessListener(this::onLocation)
+            } else {
+                finishAffinity()
             }
         }
     }
@@ -81,8 +73,20 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.isMyLocationEnabled = true
         mMap = googleMap
+        if (isGooglePlayServicesAvailable()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                !werePermissionsGranted()) {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(ACCESS_FINE_LOCATION),
+                    RC_FINE_LOCATION_PERMISSION)
+            } else {
+                googleMap.isMyLocationEnabled = true
+                mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+                mFusedLocationProviderClient!!.lastLocation
+                    .addOnSuccessListener(this::onLocation)
+            }
+        }
     }
 
     fun isGooglePlayServicesAvailable() : Boolean {
