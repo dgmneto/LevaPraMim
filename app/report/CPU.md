@@ -1,4 +1,4 @@
-# Análise de CPU
+# CPU
 
 Fizemos a análise do uso de CPU usando o Android Profiler durante ambos os fluxos do app.
 

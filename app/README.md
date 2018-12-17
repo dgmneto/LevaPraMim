@@ -11,6 +11,7 @@ Já para o carregador, ele poderá ver todas as solicitaçoes de viagens ao mesm
 
 ## Credenciais
 
+Temos 2 usuários cadastrados atualmente:
  - Cliente: Usuário: dgmneto@gmail.com / Senha: 123456
  - Carregador: Usuário: dgmn@cin.ufpe.br / Senha: 123456
 
@@ -35,5 +36,9 @@ Para melhor compreensão do fluxo do cliente, temos um [vídeo](https://drive.go
 
 ## Análises
 
-- [CPU](./relatorio/CPU.md)
-- [Leak Canary](./relatorio/LEAK_CANARY.md)
+Fizemos as mais diversas análises utilizando o Android Profiler e o Leak Canary. No final das contas, foi necessária uma refatoração para retificar um vazamento de memória relacionado ao uso de `inner class`.
+- [CPU](./report/CPU.md)
+- [Leak Canary](./report/LEAK_CANARY.md)
+- [Memória](./report/MEMORY.md)
+- [Largura de Banda](./report/BAND_WIDTH.md)
+- [Bateria](./report/BATTERY.md)
