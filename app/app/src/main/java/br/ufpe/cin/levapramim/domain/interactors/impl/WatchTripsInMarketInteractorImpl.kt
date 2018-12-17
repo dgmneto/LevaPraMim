@@ -10,6 +10,7 @@ import br.ufpe.cin.levapramim.domain.models.Trip
 import br.ufpe.cin.levapramim.domain.models.trip.Status
 import br.ufpe.cin.levapramim.domain.repositories.PlaceRepository
 import br.ufpe.cin.levapramim.domain.repositories.TripRepository
+import java.lang.ref.WeakReference
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedDeque
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -31,7 +32,7 @@ class WatchTripsInMarketInteractorImpl(
         val placesIds = LinkedList<String>()
         placesIds.add(trip.fromId!!)
         placesIds.add(trip.toId!!)
-        val callback = PlaceCalback(trip)
+        val callback = PlaceCalback(this,  trip)
         placeRepository.findPlacesByIds(placesIds, callback)
     }
 
@@ -43,7 +44,13 @@ class WatchTripsInMarketInteractorImpl(
         tripRepository.findTripsByMarketIdAndStatus(market.id, Status.PENDING, this)
     }
 
-    inner class PlaceCalback(val trip: Trip) : PlaceRepository.Callback {
+    class PlaceCalback private constructor(val trip: Trip) : PlaceRepository.Callback {
+        private lateinit var interactor : WeakReference<WatchTripsInMarketInteractorImpl>
+
+        constructor(interactor: WatchTripsInMarketInteractorImpl, trip: Trip) : this(trip) {
+            this.interactor = WeakReference(interactor)
+        }
+
         override fun onPlaces(places: List<Place>) {
             lateinit var origin: Place
             lateinit var destiny: Place
@@ -51,11 +58,11 @@ class WatchTripsInMarketInteractorImpl(
                 if (trip.fromId == place.id) origin = place
                 else if (trip.toId == place.id) destiny = place
             }
-            this@WatchTripsInMarketInteractorImpl.callback.onTrip(trip.id!!, trip, origin, destiny)
+            interactor.get()!!.callback.onTrip(trip.id!!, trip, origin, destiny)
         }
 
         override fun onError(throwable: Throwable) {
-            this@WatchTripsInMarketInteractorImpl.onError(throwable)
+            interactor.get()!!.onError(throwable)
         }
     }
 }

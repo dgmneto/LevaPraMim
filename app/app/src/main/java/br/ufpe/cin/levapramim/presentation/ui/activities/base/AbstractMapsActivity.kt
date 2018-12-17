@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import java.lang.ref.WeakReference
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -32,7 +33,7 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     private val RC_FINE_LOCATION_PERMISSION = 0
     private val LOCATION_UPDATE_INTERVAL_MIN = 1L
     private var mFusedLocationProviderClient : FusedLocationProviderClient? = null
-    private var mLocationCallback : LocationCallback = InnerLocationCallback()
+    private var mLocationCallback : LocationCallback = InnerLocationCallback(this)
     private var mMap : GoogleMap? = null
     private var mMarker : Marker? = null
 
@@ -71,15 +72,22 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
         }
     }
 
-    inner class InnerLocationCallback: LocationCallback() {
+    class InnerLocationCallback(): LocationCallback() {
+        private lateinit var activityRefference : WeakReference<AbstractMapsActivity>
+
+        constructor(activity: AbstractMapsActivity) : this() {
+            this.activityRefference = WeakReference<AbstractMapsActivity>(activity)
+        }
+
         override fun onLocationResult(locationResult: LocationResult?) {
+            val activity = activityRefference.get()!!
             super.onLocationResult(locationResult)
             if (locationResult == null) return
             val lastLocation = locationResult.lastLocation
-            this@AbstractMapsActivity.onLocation(lastLocation)
+            activity.onLocation(lastLocation)
             val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-            if (shouldShowMarker()) updateMarker(latLng)
-            updateCamera(latLng)
+            if (activity.shouldShowMarker()) activity.updateMarker(latLng)
+            activity.updateCamera(latLng)
         }
     }
 
