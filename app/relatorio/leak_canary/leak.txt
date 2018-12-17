@@ -1,0 +1,307 @@
+In br.ufpe.cin.levapramim:1.0:1.
+* br.ufpe.cin.levapramim.presentation.ui.activities.client.ClientMainActivity has leaked:
+* zzat.!(zzda)!
+* ↳ ListenerHolder.!(zajk)!
+* ↳ ListenerHolder$ListenerKey.!(zajj)!
+* ↳ AbstractMapsActivity$InnerLocationCallback.!(this$0)!
+* ↳ ClientMainActivity
+
+* Reference Key: fa228b06-fa28-42c5-8e34-07bc160702d8
+* Device: Google google Android SDK built for x86 sdk_gphone_x86
+* Android Version: 9 API: 28 LeakCanary: 1.6.2 0ebc1fc
+* Durations: watch=84664ms, gc=212ms, heap dump=11891ms, analysis=32905ms
+
+* Details:
+* Instance of com.google.android.gms.internal.location.zzat
+|   static $class$objectSize = 28
+|   static $class$copiedMethodsOffset = 4
+|   static $class$objectSizeAllocFastPath = 32
+|   static $class$extData = null
+|   static $class$referenceInstanceOffsets = 19
+|   static $class$shadow$_klass_ = java.lang.Class
+|   static $class$componentType = null
+|   static $class$dexClassDefIndex = 5794
+|   static $class$dexCache = java.lang.DexCache@321088472 (0x13236bd8)
+|   static $class$ifTable = java.lang.Object[6]@322944656 (0x133fbe90)
+|   static $class$sFields = 0
+|   static $class$vtable = null
+|   static $class$methods = 3965651888
+|   static $classOverhead = byte[128]@321143105 (0x13244141)
+|   static $class$classSize = 252
+|   static $class$status = -536870912
+|   static $class$primitiveType = 131072
+|   static $class$superClass = com.google.android.gms.location.zzv
+|   static $class$virtualMethodsOffset = 1
+|   static $class$numReferenceStaticFields = 0
+|   static $class$accessFlags = 524304
+|   static $class$clinitThreadId = 28200
+|   static $class$dexTypeIndex = 4267
+|   static $class$name = "com.google.android.gms.internal.location.zzat"
+|   static $class$iFields = 3965651864
+|   static $class$numReferenceInstanceFields = 1
+|   static $class$classFlags = 0
+|   static $class$shadow$_monitor_ = 0
+|   static $class$classLoader = dalvik.system.PathClassLoader@320952816 (0x132159f0)
+|   zzda = com.google.android.gms.common.api.internal.ListenerHolder@322975464 (0x134036e8)
+|   mDescriptor = "com.google.android.gms.location.ILocationCallback"
+|   mObject = 3472046848
+|   mOwner = com.google.android.gms.internal.location.zzat@321086904 (0x132365b8)
+|   shadow$_klass_ = com.google.android.gms.internal.location.zzat
+|   shadow$_monitor_ = 0
+* Instance of com.google.android.gms.common.api.internal.ListenerHolder
+|   static $class$objectSize = 20
+|   static $class$copiedMethodsOffset = 6
+|   static $class$objectSizeAllocFastPath = 24
+|   static $class$extData = null
+|   static $class$referenceInstanceOffsets = 7
+|   static $class$shadow$_klass_ = java.lang.Class
+|   static $class$componentType = null
+|   static $class$dexClassDefIndex = 1706
+|   static $class$dexCache = java.lang.DexCache@321088472 (0x13236bd8)
+|   static $class$ifTable = java.lang.Object[0]@1890040672 (0x70a7bb60)
+|   static $class$sFields = 0
+|   static $class$vtable = null
+|   static $class$methods = 3970118176
+|   static $classOverhead = byte[68]@321171769 (0x1324b139)
+|   static $class$classSize = 192
+|   static $class$status = -536870912
+|   static $class$primitiveType = 131072
+|   static $class$superClass = java.lang.Object
+|   static $class$virtualMethodsOffset = 1
+|   static $class$numReferenceStaticFields = 0
+|   static $class$accessFlags = 524305
+|   static $class$clinitThreadId = 28171
+|   static $class$dexTypeIndex = 3305
+|   static $class$name = null
+|   static $class$iFields = 3970118120
+|   static $class$numReferenceInstanceFields = 3
+|   static $class$classFlags = 0
+|   static $class$shadow$_monitor_ = 0
+|   static $class$classLoader = dalvik.system.PathClassLoader@320952816 (0x132159f0)
+|   zaji = com.google.android.gms.common.api.internal.ListenerHolder$zaa@322975488 (0x13403700)
+|   zajj = null
+|   zajk = com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey@322975520 (0x13403720)
+|   shadow$_klass_ = com.google.android.gms.common.api.internal.ListenerHolder
+|   shadow$_monitor_ = 0
+* Instance of com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey
+|   static $class$objectSize = 16
+|   static $class$copiedMethodsOffset = 3
+|   static $class$objectSizeAllocFastPath = 16
+|   static $class$extData = null
+|   static $class$referenceInstanceOffsets = 3
+|   static $class$shadow$_klass_ = java.lang.Class
+|   static $class$componentType = null
+|   static $class$dexClassDefIndex = 1704
+|   static $class$dexCache = java.lang.DexCache@321088472 (0x13236bd8)
+|   static $class$ifTable = java.lang.Object[0]@1890040672 (0x70a7bb60)
+|   static $class$sFields = 0
+|   static $class$vtable = null
+|   static $class$methods = 3970117736
+|   static $classOverhead = byte[48]@321171153 (0x1324aed1)
+|   static $class$classSize = 172
+|   static $class$status = -536870912
+|   static $class$primitiveType = 131072
+|   static $class$superClass = java.lang.Object
+|   static $class$virtualMethodsOffset = 1
+|   static $class$numReferenceStaticFields = 0
+|   static $class$accessFlags = 524305
+|   static $class$clinitThreadId = 28171
+|   static $class$dexTypeIndex = 3302
+|   static $class$name = null
+|   static $class$iFields = 3970117696
+|   static $class$numReferenceInstanceFields = 2
+|   static $class$classFlags = 0
+|   static $class$shadow$_monitor_ = 0
+|   static $class$classLoader = dalvik.system.PathClassLoader@320952816 (0x132159f0)
+|   zajj = br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMapsActivity$InnerLocationCallback@322975536 (0x13403730)
+|   zajm = "LocationCallback"
+|   shadow$_klass_ = com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey
+|   shadow$_monitor_ = 0
+* Instance of br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMapsActivity$InnerLocationCallback
+|   static $class$objectSize = 12
+|   static $class$copiedMethodsOffset = 4
+|   static $class$objectSizeAllocFastPath = 16
+|   static $class$extData = null
+|   static $class$referenceInstanceOffsets = 1
+|   static $class$shadow$_klass_ = java.lang.Class
+|   static $class$componentType = null
+|   static $class$dexClassDefIndex = 24
+|   static $class$dexCache = java.lang.DexCache@321501680 (0x1329b9f0)
+|   static $class$ifTable = java.lang.Object[0]@1890040672 (0x70a7bb60)
+|   static $class$sFields = 3967025048
+|   static $change = null
+|   static $class$vtable = null
+|   static $class$methods = 3967025112
+|   static $classOverhead = byte[56]@321504753 (0x1329c5f1)
+|   static $class$classSize = 192
+|   static $class$status = -536870912
+|   static $class$primitiveType = 131072
+|   static $class$superClass = com.google.android.gms.location.LocationCallback
+|   static $class$virtualMethodsOffset = 3
+|   static $class$numReferenceStaticFields = 1
+|   static $class$accessFlags = 524305
+|   static $class$clinitThreadId = 28171
+|   static $class$dexTypeIndex = 139
+|   static serialVersionUID = 2924943900728913742
+|   static $class$name = null
+|   static $class$iFields = 3967025088
+|   static $class$numReferenceInstanceFields = 1
+|   static $class$classFlags = 0
+|   static $class$shadow$_monitor_ = 0
+|   static $class$classLoader = dalvik.system.PathClassLoader@320952816 (0x132159f0)
+|   this$0 = br.ufpe.cin.levapramim.presentation.ui.activities.client.ClientMainActivity@322975584 (0x13403760)
+|   shadow$_klass_ = br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMapsActivity$InnerLocationCallback
+|   shadow$_monitor_ = -1955076883
+* Instance of br.ufpe.cin.levapramim.presentation.ui.activities.client.ClientMainActivity
+|   static $class$objectSize = 356
+|   static $class$copiedMethodsOffset = 16
+|   static $class$objectSizeAllocFastPath = 360
+|   static $class$extData = null
+|   static $class$referenceInstanceOffsets = -1073741824
+|   static $class$shadow$_klass_ = java.lang.Class
+|   static $class$componentType = null
+|   static $class$dexClassDefIndex = 23
+|   static $class$dexCache = java.lang.DexCache@321478016 (0x13295d80)
+|   static $class$ifTable = java.lang.Object[46]@321500688 (0x1329b610)
+|   static $class$sFields = 3969184144
+|   static $change = null
+|   static $class$vtable = null
+|   static $class$methods = 3969184256
+|   static $classOverhead = byte[2272]@321492537 (0x13299639)
+|   static $class$classSize = 2408
+|   static $class$status = -536870912
+|   static $class$primitiveType = 131072
+|   static $class$superClass = br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMarketActivity
+|   static $class$virtualMethodsOffset = 8
+|   static $class$numReferenceStaticFields = 1
+|   static $class$accessFlags = 524305
+|   static $class$clinitThreadId = 28171
+|   static $class$dexTypeIndex = 173
+|   static serialVersionUID = -5442330715146005919
+|   static $class$name = "br.ufpe.cin.levapramim.presentation.ui.activities.client.ClientMainActivity"
+|   static $class$iFields = 3969184184
+|   static $class$numReferenceInstanceFields = 4
+|   static $class$classFlags = 0
+|   static $class$shadow$_monitor_ = -1922565518
+|   static $class$classLoader = dalvik.system.PathClassLoader@320952816 (0x132159f0)
+|   _$_findViewCache = null
+|   mPresenter = br.ufpe.cin.levapramim.presentation.presenters.impl.ClientMainPresenterImpl@322975944 (0x134038c8)
+|   sp_destiny = android.support.v7.widget.AppCompatSpinner@322975968 (0x134038e0)
+|   sp_pickup = android.support.v7.widget.AppCompatSpinner@322976808 (0x13403c28)
+|   _$_findViewCache = null
+|   mMarket = br.ufpe.cin.levapramim.domain.models.Market@322977648 (0x13403f70)
+|   mPresenter = br.ufpe.cin.levapramim.presentation.presenters.impl.MarketPresenterImpl@322977672 (0x13403f88)
+|   LOCATION_UPDATE_INTERVAL_MIN = 1
+|   RC_FINE_LOCATION_PERMISSION = 0
+|   _$_findViewCache = null
+|   mFusedLocationProviderClient = com.google.android.gms.location.FusedLocationProviderClient@322977696 (0x13403fa0)
+|   mLocationCallback = br.ufpe.cin.levapramim.presentation.ui.activities.base.AbstractMapsActivity$InnerLocationCallback@322975536 (0x13403730)
+|   mMap = com.google.android.gms.maps.GoogleMap@322977744 (0x13403fd0)
+|   mMarker = com.google.android.gms.maps.model.Marker@322977760 (0x13403fe0)
+|   RC_SIG_IN = 0
+|   _$_findViewCache = null
+|   currentUser = com.google.firebase.auth.internal.zzl@321661336 (0x132c2998)
+|   executor = java.util.concurrent.ThreadPoolExecutor@320876120 (0x13202e58)
+|   presenter = br.ufpe.cin.levapramim.presentation.presenters.impl.LoggedPresenterImpl@322977776 (0x13403ff0)
+|   user = br.ufpe.cin.levapramim.domain.models.user.Client@322977800 (0x13404008)
+|   mDelegate = android.support.v7.app.AppCompatDelegateImpl@322977832 (0x13404028)
+|   mResources = null
+|   mThemeId = 2131755014
+|   mCreated = true
+|   mFragments = android.support.v4.app.FragmentController@322977968 (0x134040b0)
+|   mHandler = android.support.v4.app.FragmentActivity$1@322977984 (0x134040c0)
+|   mNextCandidateRequestIndex = 0
+|   mPendingFragmentActivityResults = android.support.v4.util.SparseArrayCompat@322978016 (0x134040e0)
+|   mRequestedPermissionsFromFragment = false
+|   mResumed = false
+|   mStartedActivityFromFragment = false
+|   mStartedIntentSenderFromFragment = false
+|   mStopped = true
+|   mViewModelStore = null
+|   mExtraDataMap = android.support.v4.util.SimpleArrayMap@322978040 (0x134040f8)
+|   mLifecycleRegistry = android.arch.lifecycle.LifecycleRegistry@322978064 (0x13404110)
+|   mActionBar = null
+|   mActionModeTypeStarting = 0
+|   mActivityInfo = android.content.pm.ActivityInfo@322978096 (0x13404130)
+|   mActivityTransitionState = android.app.ActivityTransitionState@322978248 (0x134041c8)
+|   mApplication = br.ufpe.cin.levapramim.LevaPraMim@320952720 (0x13215990)
+|   mAutoFillIgnoreFirstResumePause = false
+|   mAutoFillResetNeeded = false
+|   mAutofillManager = null
+|   mAutofillPopupWindow = null
+|   mCalled = true
+|   mCanEnterPictureInPicture = false
+|   mChangeCanvasToTranslucent = false
+|   mChangingConfigurations = false
+|   mComponent = android.content.ComponentName@322978304 (0x13404200)
+|   mConfigChangeFlags = 0
+|   mCurrentConfig = android.content.res.Configuration@322978320 (0x13404210)
+|   mDecor = null
+|   mDefaultKeyMode = 0
+|   mDefaultKeySsb = null
+|   mDestroyed = true
+|   mDoReportFullyDrawn = false
+|   mEmbeddedID = null
+|   mEnableDefaultActionBarUp = false
+|   mEnterTransitionListener = android.app.SharedElementCallback$1@1891375376 (0x70bc1910)
+|   mExitTransitionListener = android.app.SharedElementCallback$1@1891375376 (0x70bc1910)
+|   mFinished = true
+|   mFragments = android.app.FragmentController@322978432 (0x13404280)
+|   mHandler = android.os.Handler@322978448 (0x13404290)
+|   mHasCurrentPermissionsRequest = false
+|   mIdent = 100782955
+|   mInstanceTracker = android.os.StrictMode$InstanceTracker@322978480 (0x134042b0)
+|   mInstrumentation = android.app.Instrumentation@321662968 (0x132c2ff8)
+|   mIntent = android.content.Intent@322978496 (0x134042c0)
+|   mLastAutofillId = 1073741825
+|   mLastNonConfigurationInstances = null
+|   mMainThread = android.app.ActivityThread@320864696 (0x132001b8)
+|   mManagedCursors = java.util.ArrayList@322978560 (0x13404300)
+|   mManagedDialogs = null
+|   mMenuInflater = null
+|   mParent = null
+|   mReferrer = "br.ufpe.cin.levapramim"
+|   mRestoredFromBundle = true
+|   mResultCode = 0
+|   mResultData = null
+|   mResumed = false
+|   mSearchEvent = null
+|   mSearchManager = null
+|   mStartedActivity = false
+|   mStopped = true
+|   mTaskDescription = android.app.ActivityManager$TaskDescription@322978624 (0x13404340)
+|   mTemporaryPause = false
+|   mTitle = "Feira UFPE"
+|   mTitleColor = 0
+|   mTitleReady = true
+|   mToken = android.os.BinderProxy@322978664 (0x13404368)
+|   mTranslucentCallback = null
+|   mUiThread = java.lang.Thread@1962458960 (0x74f8bf50)
+|   mVisibleFromClient = true
+|   mVisibleFromServer = false
+|   mVoiceInteractor = null
+|   mWindow = com.android.internal.policy.PhoneWindow@322978688 (0x13404380)
+|   mWindowAdded = true
+|   mWindowManager = android.view.WindowManagerImpl@322979064 (0x134044f8)
+|   mInflater = com.android.internal.policy.PhoneLayoutInflater@322979088 (0x13404510)
+|   mOverrideConfiguration = null
+|   mResources = android.content.res.Resources@322979136 (0x13404540)
+|   mTheme = android.content.res.Resources$Theme@322979176 (0x13404568)
+|   mThemeResource = 2131755014
+|   mBase = android.app.ContextImpl@322979192 (0x13404578)
+|   shadow$_klass_ = br.ufpe.cin.levapramim.presentation.ui.activities.client.ClientMainActivity
+|   shadow$_monitor_ = 1325465342
+* Excluded Refs:
+| Field: android.os.Message.obj
+| Field: android.os.Message.next
+| Field: android.os.Message.target
+| Field: android.view.Choreographer$FrameDisplayEventReceiver.mMessageQueue (always)
+| Field: android.view.ViewGroup$ViewLocationHolder.mRoot
+| Thread:FinalizerWatchdogDaemon (always)
+| Thread:main (always)
+| Thread:LeakCanary-Heap-Dump (always)
+| Class:java.lang.ref.WeakReference (always)
+| Class:java.lang.ref.SoftReference (always)
+| Class:java.lang.ref.PhantomReference (always)
+| Class:java.lang.ref.Finalizer (always)
+| Class:java.lang.ref.FinalizerReference (always)

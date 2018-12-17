@@ -32,3 +32,4 @@ Para melhor compreensão do fluxo do cliente, temos um [vídeo](https://drive.go
 ## Análises
 
 - [CPU](./relatorio/CPU.md)
+- [Leak Canary](./relatorio/LEAK_CANARY.md)

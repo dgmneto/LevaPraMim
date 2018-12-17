@@ -16,4 +16,4 @@ O padrão singleton com injeção de dependência foi usado para compartilhar th
 
 Como todo aplicativo de tal simplicidade deve ser, tivemos um uso de CPU extremamente baixo. O aplicativo se mantem idle praticamente 100% do tempo, usando no máximo 40% de CPU em um dado instante.
 
-De forma bastante objetiva, não achamos nenhum ponto de melhoria em se tratando de uso de CPU.g
+De forma bastante objetiva, não achamos nenhum ponto de melhoria em se tratando do uso de CPU.
