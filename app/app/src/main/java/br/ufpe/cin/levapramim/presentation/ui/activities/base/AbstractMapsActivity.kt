@@ -33,7 +33,6 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     private val RC_FINE_LOCATION_PERMISSION = 0
     private val LOCATION_UPDATE_INTERVAL_MIN = 1L
     private var mFusedLocationProviderClient : FusedLocationProviderClient? = null
-    private var mLocationCallback : LocationCallback = InnerLocationCallback(this)
     private var mMap : GoogleMap? = null
     private var mMarker : Marker? = null
 
@@ -64,34 +63,15 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
                     RC_FINE_LOCATION_PERMISSION)
             } else {
                 mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-                val locationRequest = LocationRequest()
-                locationRequest.priority = PRIORITY_HIGH_ACCURACY
-                locationRequest.interval = TimeUnit.MINUTES.toMillis(LOCATION_UPDATE_INTERVAL_MIN)
-                mFusedLocationProviderClient?.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper())
+                mFusedLocationProviderClient!!.lastLocation
+                    .addOnSuccessListener(this::onLocation)
             }
         }
     }
 
-    class InnerLocationCallback(): LocationCallback() {
-        private lateinit var activityRefference : WeakReference<AbstractMapsActivity>
-
-        constructor(activity: AbstractMapsActivity) : this() {
-            this.activityRefference = WeakReference<AbstractMapsActivity>(activity)
-        }
-
-        override fun onLocationResult(locationResult: LocationResult?) {
-            val activity = activityRefference.get()!!
-            super.onLocationResult(locationResult)
-            if (locationResult == null) return
-            val lastLocation = locationResult.lastLocation
-            activity.onLocation(lastLocation)
-            val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-            activity.updateCamera(latLng)
-        }
-    }
-
     open fun onLocation(location: Location) {
-        // UNIMPLEMENTED
+        val latLng = LatLng(location.latitude, location.longitude)
+        updateCamera(latLng)
     }
 
     fun updateCamera(latLng: LatLng) {
@@ -121,11 +101,6 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     fun werePermissionsGranted() : Boolean {
         return checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED ||
                 checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mFusedLocationProviderClient?.removeLocationUpdates(mLocationCallback)
     }
 
     protected fun getMap() = mMap
