@@ -9,13 +9,16 @@ Encontrar um carregador é um golpe de sorte hoje em dia, pois não estão centr
 O Leva Pra Mim é um aplicativo que permite a centralização dos carregadores para facilitar o encontro com clientes. Nele, ao fazer login, o cliente pode escolher um ponto de referência da lista pré-determinada dos locais mais comuns para tal, bem como dizer também para onde deseja ir.
 Já para o carregador, ele poderá ver todas as solicitaçoes de viagens ao mesmo tempo e escolher qual deseja realizar.
 
+
 ## Fluxo
 Para o cliente o fluxo é:
 - Fazer Login
 - Solicitar a corrida escolhendo o local de origem e destino a viagem
 - Esperar o carregador
-- Seguir viagem ao encontrar
+- Seguir viagem ao encontrar com carregador
+- Clicar em finalizar no Dialog que aparece o valor final da corrida
 Não precisando de mais nenhuma ação após a solicitação da corrida
+Para melhor compreensão do fluxo do cliente, temos um vídeo em <https://drive.google.com/file/d/1l21x8F5WoJhqeSE8mjfzILv9sfPog76Z/view?usp=sharing>
 
 Já para o carregador o fluxo é:
 - Fazer Login
@@ -23,3 +26,6 @@ Já para o carregador o fluxo é:
 - Anunciar que chegou ao ponto de encontro para o cliente
 - Iniciar a corrida
 - Indicar que chegou ao destino
+- Clicar em finalizar no Dialog que aparece o valor final da corrida
+Para melhor compreensão do fluxo do cliente, temos um vídeo em <https://drive.google.com/file/d/1uETxwV79MGKZuTHPEAEusY1unOQOwz7t/view?usp=sharing>
+
