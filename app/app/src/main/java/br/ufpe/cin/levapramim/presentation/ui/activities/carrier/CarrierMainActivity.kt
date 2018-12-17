@@ -143,6 +143,4 @@ class CarrierMainActivity : AbstractMarketActivity(), GoogleMap.OnMarkerClickLis
     }
 
     override fun getLayoutResourceId() = R.layout.activity_carrier_main
-
-    override fun shouldShowMarker() = false
 }

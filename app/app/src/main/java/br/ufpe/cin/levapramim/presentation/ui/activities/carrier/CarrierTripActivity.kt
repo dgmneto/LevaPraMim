@@ -141,6 +141,4 @@ class CarrierTripActivity : AbstractMarketActivity(), View.OnClickListener, Carr
     }
 
     override fun getTitleToSet() : String = String.format("%s -> %s", origin.name, destiny.name)
-
-    override fun shouldShowMarker() = false
 }

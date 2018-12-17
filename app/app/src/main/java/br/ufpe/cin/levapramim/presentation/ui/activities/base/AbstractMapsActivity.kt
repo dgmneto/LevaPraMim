@@ -33,7 +33,6 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
     private val RC_FINE_LOCATION_PERMISSION = 0
     private val LOCATION_UPDATE_INTERVAL_MIN = 1L
     private var mFusedLocationProviderClient : FusedLocationProviderClient? = null
-    private var mLocationCallback : LocationCallback = InnerLocationCallback(this)
     private var mMap : GoogleMap? = null
     private var mMarker : Marker? = null
 
@@ -64,42 +63,15 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
                     RC_FINE_LOCATION_PERMISSION)
             } else {
                 mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-                val locationRequest = LocationRequest()
-                locationRequest.priority = PRIORITY_HIGH_ACCURACY
-                locationRequest.interval = TimeUnit.MINUTES.toMillis(LOCATION_UPDATE_INTERVAL_MIN)
-                mFusedLocationProviderClient?.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper())
+                mFusedLocationProviderClient!!.lastLocation
+                    .addOnSuccessListener(this::onLocation)
             }
         }
     }
 
-    class InnerLocationCallback(): LocationCallback() {
-        private lateinit var activityRefference : WeakReference<AbstractMapsActivity>
-
-        constructor(activity: AbstractMapsActivity) : this() {
-            this.activityRefference = WeakReference<AbstractMapsActivity>(activity)
-        }
-
-        override fun onLocationResult(locationResult: LocationResult?) {
-            val activity = activityRefference.get()!!
-            super.onLocationResult(locationResult)
-            if (locationResult == null) return
-            val lastLocation = locationResult.lastLocation
-            activity.onLocation(lastLocation)
-            val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-            if (activity.shouldShowMarker()) activity.updateMarker(latLng)
-            activity.updateCamera(latLng)
-        }
-    }
-
     open fun onLocation(location: Location) {
-        // UNIMPLEMENTED
-    }
-
-    fun updateMarker(latLng: LatLng) {
-        if (mMarker == null)
-            mMarker = mMap!!.addMarker(MarkerOptions().position(latLng).title("You're here"))
-        else
-            mMarker!!.position = latLng
+        val latLng = LatLng(location.latitude, location.longitude)
+        updateCamera(latLng)
     }
 
     fun updateCamera(latLng: LatLng) {
@@ -107,17 +79,9 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
         mMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.isMyLocationEnabled = true
         mMap = googleMap
     }
 
@@ -139,12 +103,5 @@ abstract class AbstractMapsActivity : AbstractLoggedActivity(), OnMapReadyCallba
                 checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
     }
 
-    override fun onStop() {
-        super.onStop()
-        mFusedLocationProviderClient?.removeLocationUpdates(mLocationCallback)
-    }
-
     protected fun getMap() = mMap
-
-    open fun shouldShowMarker() = true
 }
