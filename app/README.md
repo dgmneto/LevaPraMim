@@ -18,7 +18,7 @@ Para o cliente o fluxo é:
 - Seguir viagem ao encontrar com carregador
 - Clicar em finalizar no Dialog que aparece o valor final da corrida
 Não precisando de mais nenhuma ação após a solicitação da corrida
-Para melhor compreensão do fluxo do cliente, temos um vídeo em <https://drive.google.com/file/d/1l21x8F5WoJhqeSE8mjfzILv9sfPog76Z/view?usp=sharing>
+Para melhor compreensão do fluxo do cliente, temos um [vídeo](https://drive.google.com/file/d/1l21x8F5WoJhqeSE8mjfzILv9sfPog76Z/view?usp=sharing)
 
 Já para o carregador o fluxo é:
 - Fazer Login
@@ -27,5 +27,8 @@ Já para o carregador o fluxo é:
 - Iniciar a corrida
 - Indicar que chegou ao destino
 - Clicar em finalizar no Dialog que aparece o valor final da corrida
-Para melhor compreensão do fluxo do cliente, temos um vídeo em <https://drive.google.com/file/d/1uETxwV79MGKZuTHPEAEusY1unOQOwz7t/view?usp=sharing>
+Para melhor compreensão do fluxo do cliente, temos um [vídeo](https://drive.google.com/file/d/1uETxwV79MGKZuTHPEAEusY1unOQOwz7t/view?usp=sharing)
 
+## Análises
+
+- [CPU](./relatorio/CPU.md)
